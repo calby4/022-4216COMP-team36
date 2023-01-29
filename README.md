@@ -1,3 +1,12 @@
 # 022-4216COMP-team36
 
-hello ladies
+Team Members :
+--------------
+Lewis Ashall
+Callum Bamford
+Connor Allen
+Lenny Byrne
+Mitchell Thomas
+--------------
+
+
