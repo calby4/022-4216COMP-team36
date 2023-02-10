@@ -2,13 +2,13 @@
 
 Team Members :
 --------------
-Lewis Ashall
-Callum Bamford
-Connor Allen
-Lenny Byrne
-Mitchell Thomas
-Elliott Lawton
-Suley Sajid Bashir
+Lewis Ashall,
+Callum Bamford,
+Connor Allen,
+Lenny Byrne,
+Mitchell Thomas,
+Elliott Lawton,
+Suley Sajid Bashir,
 --------------
 
 
