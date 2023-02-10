@@ -7,6 +7,8 @@ Callum Bamford
 Connor Allen
 Lenny Byrne
 Mitchell Thomas
+Elliott Lawton
+Suley Sajid Bashir
 --------------
 
 
