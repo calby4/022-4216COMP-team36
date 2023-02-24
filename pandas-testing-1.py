@@ -12,21 +12,34 @@ It determines this subset by using filters and returns only the information wher
 it satisfies those conditions.
 """
 
-def filterData(dataset, *filters):
-
-    filterList = []
-    for i in filters:
-        filterList.append(i)
+def filterData(dataset, filterList):
 
     filteredData = dataset[filterList]
     return filteredData
+
+def getFilterList():
+     
+    filterList = []
+    userInput = ""
+    while True:
+        userInput = input("Filter: ")
+
+        if userInput == "!!!":
+            break
+
+        filterList.append(userInput)
+
+    return filterList 
+
 
 def main():
 
     data = pd.read_csv("rotten_tomatoes_top_movies.csv")
 
-    fD = filterData(data, "title", "synopsis", "people_score", "critic_score")
-    print(fD)
+    filterList = getFilterList()
+
+    fD = filterData(data, filterList)
+    print(fD.head())
 
 if __name__ == "__main__":
     main()
