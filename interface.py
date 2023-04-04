@@ -1,13 +1,16 @@
-# Python program to create a basic GUI
-# application using the customtkinter module
+# Interface for data sorting program
+
+# Import required libraries
  
 import customtkinter as ctk
 import tkinter as tk
  
+ # Setting the theme of the UI
 ctk.set_appearance_mode("dark")
  
 ctk.set_default_color_theme("green")   
  
+ # Dimensions of the app are set
 appWidth, appHeight = 800, 700
  
 # App Class
@@ -15,6 +18,7 @@ class App(ctk.CTk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
  
+        # Title of the APP
         self.title("DataSorterz")
         self.geometry(f"{appWidth}x{appHeight}")
  
@@ -26,28 +30,15 @@ class App(ctk.CTk):
                             sticky="ew")
  
         # Search Entry Field
-        self.nameEntry = ctk.CTkEntry(self,
+        self.searchEntry = ctk.CTkEntry(self,
                          placeholder_text="Enter search query")
-        self.nameEntry.grid(row=0, column=1,
+        self.searchEntry.grid(row=0, column=1,
                             columnspan=3, padx=20,
                             pady=20, sticky="ew")
         
-         # Year Label
-        self.yearLabel = ctk.CTkLabel(self,
-                                      text="Year")
-        self.yearLabel.grid(row=10, column=0,
-                            padx=20, pady=20,
-                            sticky="ew")
- 
-        # Search Entry Field
-        self.yearEntry = ctk.CTkEntry(self,
-                         placeholder_text="Enter a year")
-        self.yearEntry.grid(row=10, column=1,
-                            columnspan=3, padx=20,
-                            pady=20, sticky="ew")
 
  
-        # Choice Label
+        # Genre choice label
         self.choiceLabel = ctk.CTkLabel(self,
                                         text="Select Genre")
         self.choiceLabel.grid(row=3, column=0,
@@ -112,7 +103,21 @@ class App(ctk.CTk):
                                        offvalue="c8")                              
         self.choice8.grid(row=4, column=4, padx=20, pady=20,
                           sticky="ew")
+        
+        # Sort Label
+        self.sortLabel = ctk.CTkLabel(self,
+                                    text="Sort Order")
+        self.sortLabel.grid(row=6, column=0,
+                                  padx=20, pady=20,
+                                  sticky="ew")
  
+        # Sort Option Menu
+        self.sortOptionMenu = ctk.CTkOptionMenu(self,
+                                       values=["Ascending",
+                                       "Descending"])
+        self.sortOptionMenu.grid(row=6, column=1,
+                                       padx=20, pady=20,
+                                       columnspan=2, sticky="ew")
  
  
 if __name__ == "__main__":
