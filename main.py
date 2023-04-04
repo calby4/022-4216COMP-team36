@@ -21,7 +21,7 @@ def obtainFilter():
 
     while userinput != "q":
         try:
-            datasetList = ['title','year','synopsis','critic_score','people_score','consensus','total_reviews','total_ratings','type','rating','genre','original_language','director','producer','writer','release_date_(theaters)','release_date_(streaming)','box_office_(gross_usa)','runtime','production_co','sound_mix','aspect_ratio','view_the_collection','crew','link']
+            datasetList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
             userinput = input("Enter filter data:")
             if userinput == "q":
                 break
