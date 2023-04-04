@@ -1,8 +1,10 @@
 # Python program to create a basic GUI
 # application using the customtkinter module
- 
+
+import tkinter as tk
 import customtkinter as ctk
 import tkinter as tk
+import pandas
  
 ctk.set_appearance_mode("dark")
  
@@ -12,57 +14,44 @@ appWidth, appHeight = 800, 700
  
 # App Class
 class App(ctk.CTk):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
- 
+
+        def printFunc(checkboxVar):
+
+            print(checkboxVar.get())
+
+
         self.title("DataSorterz")
         self.geometry(f"{appWidth}x{appHeight}")
  
         # Search Label
-        self.searchLabel = ctk.CTkLabel(self,
-                                      text="Search")
-        self.searchLabel.grid(row=0, column=0,
-                            padx=20, pady=20,
-                            sticky="ew")
+        self.searchLabel = ctk.CTkLabel(self, text="Search")
+        self.searchLabel.grid(row=0, column=0, padx=20, pady=20, sticky="ew")
  
         # Search Entry Field
-        self.nameEntry = ctk.CTkEntry(self,
-                         placeholder_text="Enter search query")
-        self.nameEntry.grid(row=0, column=1,
-                            columnspan=3, padx=20,
-                            pady=20, sticky="ew")
+        self.nameEntry = ctk.CTkEntry(self, placeholder_text="Enter search query")
+        self.nameEntry.grid(row=0, column=1, columnspan=3, padx=20, pady=20, sticky="ew")
         
          # Year Label
-        self.yearLabel = ctk.CTkLabel(self,
-                                      text="Year")
-        self.yearLabel.grid(row=10, column=0,
-                            padx=20, pady=20,
-                            sticky="ew")
+        self.yearLabel = ctk.CTkLabel(self, text="Year")
+        self.yearLabel.grid(row=10, column=0, padx=20, pady=20, sticky="ew")
  
         # Search Entry Field
-        self.yearEntry = ctk.CTkEntry(self,
-                         placeholder_text="Enter a year")
-        self.yearEntry.grid(row=10, column=1,
-                            columnspan=3, padx=20,
-                            pady=20, sticky="ew")
+        self.yearEntry = ctk.CTkEntry(self, placeholder_text="Enter a year")
+        self.yearEntry.grid(row=10, column=1, columnspan=3, padx=20, pady=20, sticky="ew")
 
  
         # Choice Label
-        self.choiceLabel = ctk.CTkLabel(self,
-                                        text="Select Genre")
-        self.choiceLabel.grid(row=3, column=0,
-                              padx=20, pady=20,
-                              sticky="ew")
+        self.choiceLabel = ctk.CTkLabel(self, text="Select Genre")
+        self.choiceLabel.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
  
         # Genre check boxes
-        self.checkboxVar = tk.StringVar(value="Choice 1")
+        self.checkboxVar = tk.StringVar(value=1)
          
-        self.choice1 = ctk.CTkCheckBox(self, text="Title",
-                                       variable=self.checkboxVar,
-                                       onvalue="choice1",
-                                       offvalue="c1")
-        self.choice1.grid(row=3, column=1, padx=20,
-                          pady=20, sticky="ew")
+        self.choice1 = ctk.CTkCheckBox(self, text="Title", variable=self.checkboxVar, onvalue=1, offvalue=0, command=printFunc(self.checkboxVar))
+        self.choice1.grid(row=3, column=1, padx=20, pady=20, sticky="ew")
  
         self.choice2 = ctk.CTkCheckBox(self, text="Year",
                                        variable=self.checkboxVar,
@@ -140,10 +129,7 @@ class App(ctk.CTk):
                                        offvalue="c12")                              
         self.choice12.grid(row=5, column=1, padx=20, pady=20,
                           sticky="ew")
- 
- 
- 
- 
+        
  
 if __name__ == "__main__":
     app = App()
