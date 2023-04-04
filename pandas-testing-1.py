@@ -1,6 +1,7 @@
+#!/usr/bin/env python3.8
+
 import pandas as pd
 import numpy as np
-
 
 """
 function filterData
