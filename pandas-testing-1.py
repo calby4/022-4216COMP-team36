@@ -17,6 +17,13 @@ def filterData(dataset, filterList):
     filteredData = dataset[filterList]
     return filteredData
 
+
+"""
+function getFilterList
+params None
+returns filterList (List)
+"""
+
 def getFilterList():
      
     filterList = []
