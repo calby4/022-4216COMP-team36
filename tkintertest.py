@@ -23,12 +23,12 @@ class App(ctk.CTk):
         self.geometry(f"{appWidth}x{appHeight}")
         dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
         tree = ttk.Treeview(self,columns=dataList,show='headings')
-        tree.pack()
+        tree.pack(expand=1)
 
         df = pd.read_csv("rotten_tomatoes_top_movies.csv")
 
         for i in dataList:
-            tree.column(i,width=90,anchor='center')
+            tree.column(i,width=120,anchor='center')
             tree.heading(i,text=str(i))
         for i in range(1, len(df.iloc[1:])):
             dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
