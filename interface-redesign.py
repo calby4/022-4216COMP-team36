@@ -5,6 +5,8 @@ import tkinter as tk
 class applicationWindow         CTk 
 func __init__                   initialises the main frame of the application
 
+This is the main class of our application
+
 """
 
 class applicationWindow(ctk.CTk):
@@ -17,10 +19,10 @@ class applicationWindow(ctk.CTk):
         self.searchLabel = ctk.CTkLabel(self, text = "Enter Title")
         self.searchLabel.grid(row = 0, column = 0, padx = 20, pady = 20)
 
-        self.searchTextField = ctk.CTkTextbox(self, width=800, height=80)
+        self.searchTextField = ctk.CTkTextbox(self, width=1080, height=40)
         self.searchTextField.grid(row = 1, column = 0, padx = 20, pady = 20)
 
-        self.searchButton = ctk.CTkButton(self, text = "Hello, World!", command=self.searchButton_click)
+        self.searchButton = ctk.CTkButton(self, text = "Search!", command=self.searchButton_click)
         self.searchButton.grid(row = 1, column = 1, padx = 20, pady = 20)
 
         """
@@ -29,7 +31,8 @@ class applicationWindow(ctk.CTk):
         self.checkBox1.grid(row = 0, column = 1, padx=20, pady=20)
         """
     def searchButton_click(self):
-        print("Button was clicked!")
+        print("Hello! " + self.searchTextField.get(1.0, "end"))
+        self.searchTextField.delete(0.0, "end")
 
     def checkBox1_func(self):
         if self.checkBox1Value.get() == 0:

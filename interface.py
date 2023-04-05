@@ -106,28 +106,28 @@ class App(ctk.CTk):
                                        variable=self.checkboxVar,
                                        onvalue="choice9",
                                        offvalue="c9")                              
-        self.choice9.grid(row=5, column=2, padx=20, pady=20,
+        self.choice9.grid(row=5, column=1, padx=20, pady=20,
                           sticky="ew")
         
         self.choice10 = ctk.CTkCheckBox(self, text="Producer",
                                        variable=self.checkboxVar,
                                        onvalue="choice10",
                                        offvalue="c10")                              
-        self.choice10.grid(row=5, column=3, padx=20, pady=20,
+        self.choice10.grid(row=5, column=2, padx=20, pady=20,
                           sticky="ew")
         
         self.choice11 = ctk.CTkCheckBox(self, text="Runtime",
                                        variable=self.checkboxVar,
-                                       onvalue="choice10",
-                                       offvalue="c10")                              
-        self.choice11.grid(row=5, column=4, padx=20, pady=20,
+                                       onvalue="choice11",
+                                       offvalue="c11")                              
+        self.choice11.grid(row=5, column=3, padx=20, pady=20,
                           sticky="ew")
         
         self.choice12 = ctk.CTkCheckBox(self, text="Link",
                                        variable=self.checkboxVar,
                                        onvalue="choice12",
                                        offvalue="c12")                              
-        self.choice12.grid(row=5, column=1, padx=20, pady=20,
+        self.choice12.grid(row=5, column=4, padx=20, pady=20,
                           sticky="ew")
         
  
