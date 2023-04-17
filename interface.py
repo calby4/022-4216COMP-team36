@@ -36,6 +36,9 @@ class App(ctk.CTk):
                             columnspan=3, padx=20,
                             pady=20, sticky="ew")
         
+        self.main_button_1 = ctk.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), text="Search")
+        self.main_button_1.place(x=525, y=20)
+        
 
  
         # Genre choice label
