@@ -42,17 +42,37 @@ class App(ctk.CTk):
             self.tree.insert(parent='',index='end', text='', values=newdataList)
             newdataList.clear()   
 
+
+    """
+    function searchFunction
+    params self
+
+    This function grabs the data from the searchEntry CTkEntry widget and returns it to the generateTableData function
+    to edit the output of the table.
+    """
+
     def searchFunction(self):
         
-        titleToGet = self.searchEntry.get()
-        print(titleToGet)
-        self.searchEntry.configure(textvariable="Enter search query")
+        searchEntryData = self.searchEntry.get()
+
+        if searchEntryData == "":
+            
+            print("Please enter a value before attempting to search.")
+
+        else:
+            
+
+
+
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
         # Title of the APP
         self.title("DataSorterz")
         self.geometry(f"{appWidth}x{appHeight}")
+
+        #Initialises an empty filter list and creates a pandas DataFrame object from our CSV
         self.filterList = []
         self.dataFile = pd.read_csv("rotten_tomatoes_top_movies.csv")  
  
