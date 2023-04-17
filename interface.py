@@ -1,15 +1,18 @@
-# Python program to create a basic GUI
-# application using the customtkinter module
+# Interface for data sorting program
+
+# Import required libraries
  
 import customtkinter as ctk
 import tkinter as tk
 import pandas as pd
 from tkinter import ttk
  
+ # Setting the theme of the UI
 ctk.set_appearance_mode("dark")
  
 ctk.set_default_color_theme("green")   
  
+ # Dimensions of the app are set
 appWidth, appHeight = 800, 700
 
 Data = pd.read_csv("rotten_tomatoes_top_movies.csv")
@@ -20,6 +23,7 @@ dataList = ['title','year','synopsis','critic_score','people_score','rating','ge
 class App(ctk.CTk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
+        # Title of the APP
         self.title("DataSorterz")
         self.geometry(f"{appWidth}x{appHeight}")
  
@@ -31,28 +35,18 @@ class App(ctk.CTk):
                             sticky="ew")
  
         # Search Entry Field
-        self.nameEntry = ctk.CTkEntry(self,
+        self.searchEntry = ctk.CTkEntry(self,
                          placeholder_text="Enter search query")
-        self.nameEntry.grid(row=0, column=1,
+        self.searchEntry.grid(row=0, column=1,
                             columnspan=3, padx=20,
                             pady=20, sticky="ew")
         
-         # Year Label
-        self.yearLabel = ctk.CTkLabel(self,
-                                      text="Year")
-        self.yearLabel.grid(row=10, column=0,
-                            padx=20, pady=20,
-                            sticky="ew")
- 
-        # Search Entry Field
-        self.yearEntry = ctk.CTkEntry(self,
-                         placeholder_text="Enter a year")
-        self.yearEntry.grid(row=10, column=1,
-                            columnspan=3, padx=20,
-                            pady=20, sticky="ew")
+        self.main_button_1 = ctk.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), text="Search")
+        self.main_button_1.place(x=525, y=20)
+        
 
  
-        # Choice Label
+        # Genre choice label
         self.choiceLabel = ctk.CTkLabel(self,
                                         text="Select Genre")
         self.choiceLabel.grid(row=3, column=0,
@@ -118,42 +112,21 @@ class App(ctk.CTk):
                                        offvalue="c8")                              
         self.choice8.grid(row=4, column=4, padx=20, pady=20,
                           sticky="ew")
-        
-        self.choice9 = ctk.CTkCheckBox(self, text="Director",
-                                       variable=self.checkboxVar,
-                                       onvalue="choice9",
-                                       offvalue="c9")                              
-        self.choice9.grid(row=5, column=1, padx=20, pady=20,
-                          sticky="ew")
-        
-        self.choice10 = ctk.CTkCheckBox(self, text="Producer",
-                                       variable=self.checkboxVar,
-                                       onvalue="choice10",
-                                       offvalue="c10")                              
-        self.choice10.grid(row=5, column=2, padx=20, pady=20,
-                          sticky="ew")
-        
-        self.choice11 = ctk.CTkCheckBox(self, text="Runtime",
-                                       variable=self.checkboxVar,
-                                       onvalue="choice11",
-                                       offvalue="c11")                              
-        self.choice11.grid(row=5, column=3, padx=20, pady=20,
-                          sticky="ew")
-        
-        self.choice12 = ctk.CTkCheckBox(self, text="Link",
-                                       variable=self.checkboxVar,
-                                       onvalue="choice12",
-                                       offvalue="c12")                              
-        self.choice12.grid(row=5, column=4, padx=20, pady=20,
-                          sticky="ew")   
+         
+        # Sort Label
+        self.sortLabel = ctk.CTkLabel(self,
+                                    text="Sort Order")
+        self.sortLabel.grid(row=6, column=0,
+                                  padx=20, pady=20,
+                                  sticky="ew")
  
-    def printhello(self):
-        if(self.checkboxVar.get()) == 1:
-            print("On")
-        else:
-            value = 'title'
-            dataList.remove(value)
-            print("Off")
+        # Sort Option Menu
+        self.sortOptionMenu = ctk.CTkOptionMenu(self,
+                                       values=["Ascending",
+                                       "Descending"])
+        self.sortOptionMenu.grid(row=6, column=1,
+                                       padx=20, pady=20,
+                                       columnspan=2, sticky="ew")
  
  
 if __name__ == "__main__":
