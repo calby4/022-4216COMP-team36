@@ -21,8 +21,7 @@ dataList = ['title','year','synopsis','critic_score','people_score','rating','ge
 
 # App Class
 class App(ctk.CTk):
-
-
+                                
     """
     function generateTableData
     params  self
@@ -32,16 +31,19 @@ class App(ctk.CTk):
     
     """
 
-    def generateTableData(self):
+    def generateTableData(self, dataFile):
 
-        for i in dataList:
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        for i in self.dataList:
             self.tree.column(i,width=120,anchor='center')
             self.tree.heading(i,text=str(i))
-        for i in range(1, len(self.dataFile.iloc[1:])):
-            newdataList = list(self.dataFile.iloc[i].loc[dataList])
+        
+        for i in range(1, len(dataFile.iloc[1:])):
+            newdataList = list(dataFile.iloc[i].loc[self.dataList])
             self.tree.insert(parent='',index='end', text='', values=newdataList)
             newdataList.clear()   
-
 
     """
     function searchFunction
@@ -57,25 +59,23 @@ class App(ctk.CTk):
 
         if searchEntryData == "":
             
-            print("Please enter a value before attempting to search.")
+            self.generateTableData(self.dataFile)
 
         else:
-            
-
-
-
-
+            newDataFrame = self.dataFile.loc[self.dataFile['title'] == searchEntryData]
+            self.generateTableData(newDataFrame)
+                
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
         # Title of the APP
-        self.title("DataSorterz")
+        self.title("Rotten Tomatoes Top Movies Data Searcher")
         self.geometry(f"{appWidth}x{appHeight}")
 
         #Initialises an empty filter list and creates a pandas DataFrame object from our CSV
         self.filterList = []
-        self.dataFile = pd.read_csv("rotten_tomatoes_top_movies.csv")  
- 
+        self.dataFile = pd.read_csv("rotten_tomatoes_top_movies.csv")
+
         # Search Label
         self.searchLabel = ctk.CTkLabel(self, text="Search")
         self.searchLabel.grid(row=0, column=0, padx=20, pady=20, sticky="ew")
@@ -85,9 +85,7 @@ class App(ctk.CTk):
         self.searchEntry.grid(row=0, column=1, columnspan=3, padx=20, pady=20, sticky="ew")
         
         self.searchButton = ctk.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), text="Search", command=self.searchFunction)
-        self.searchButton.grid(row = 0, column = 5)
-        
-
+        self.searchButton.grid(row = 0, column = 4)
  
         # Genre choice label
         self.choiceLabel = ctk.CTkLabel(self, text="Select Genre")
@@ -141,10 +139,10 @@ class App(ctk.CTk):
         self.sortOptionMenu.grid(row=6, column=1, padx=20, pady=20,  sticky="ew")
         
         #Creates the grid used to display the data.
-        dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
-        self.tree = ttk.Treeview(self,columns=dataList,show='headings')
+        self.dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
+        self.tree = ttk.Treeview(self,columns=self.dataList,show='headings')
         self.tree.grid(row=7, column = 1, columnspan=5)     
-        self.generateTableData()
+        self.generateTableData(self.dataFile)
 
  
 if __name__ == "__main__":
