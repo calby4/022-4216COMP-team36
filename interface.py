@@ -22,13 +22,6 @@ class App(ctk.CTk):
         super().__init__(*args, **kwargs) 
         self.title("DataSorterz")
         self.geometry(f"{appWidth}x{appHeight}")
-
-        trv = ttk.Treeview(self,selectmode='browse',columns=dataList)
-        trv.grid(row=8,column=1,padx=10,columnspan=3,pady=10)
-
-        for i in dataList:
-            trv.column(i,width=90,anchor='center')
-            trv.heading(i,text=str(i))
  
         # Search Label
         self.searchLabel = ctk.CTkLabel(self,
@@ -152,7 +145,7 @@ class App(ctk.CTk):
                                        onvalue="choice12",
                                        offvalue="c12")                              
         self.choice12.grid(row=5, column=4, padx=20, pady=20,
-                          sticky="ew")
+                          sticky="ew")   
  
     def printhello(self):
         if(self.checkboxVar.get()) == 1:
