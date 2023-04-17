@@ -21,16 +21,14 @@ dataList = ['title','year','synopsis','critic_score','people_score','rating','ge
 
 # App Class
 class App(ctk.CTk):
-                                
+
     """
     function generateTableData
     params  self
 
     This function generates the data that is displayed in self.tree, or rather displays the movies and their
     corresponding attributes.
-    
     """
-
     def generateTableData(self, dataFile):
 
         for item in self.tree.get_children():
@@ -83,11 +81,11 @@ class App(ctk.CTk):
         self.searchButton = ctk.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), text="Search", command=self.searchFunction)
         self.searchButton.grid(row = 0, column = 4)
  
-        # Genre choice label
-        self.choiceLabel = ctk.CTkLabel(self, text="Select Genre")
+        # Filter choice label
+        self.choiceLabel = ctk.CTkLabel(self, text="Select Filters")
         self.choiceLabel.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
  
-        # Genre check boxes
+        # Filter check boxes
         self.checkbox1Var = ctk.IntVar(value=0)
         self.checkboxVar = ctk.IntVar(value=0)
          
@@ -112,19 +110,19 @@ class App(ctk.CTk):
         self.choice7 = ctk.CTkCheckBox(self, text="Genre", variable=self.checkboxVar,onvalue=1, offvalue=0)                              
         self.choice7.grid(row=4, column=3, padx=20, pady=20, sticky="ew")
         
-        self.choice8 = ctk.CTkCheckBox(self, text="Language", variable=self.checkboxVar, onvalue="choice8", offvalue="c8")                              
+        self.choice8 = ctk.CTkCheckBox(self, text="Language", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice8.grid(row=4, column=4, padx=20, pady=20, sticky="ew")
         
-        self.choice9 = ctk.CTkCheckBox(self, text="Director", variable=self.checkboxVar, onvalue="choice9", offvalue="c9")                              
+        self.choice9 = ctk.CTkCheckBox(self, text="Director", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice9.grid(row=5, column=1, padx=20, pady=20, sticky="ew")
         
-        self.choice10 = ctk.CTkCheckBox(self, text="Producer", variable=self.checkboxVar, onvalue="choice10", offvalue="c10")                              
+        self.choice10 = ctk.CTkCheckBox(self, text="Producer", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice10.grid(row=5, column=2, padx=20, pady=20, sticky="ew")
         
-        self.choice11 = ctk.CTkCheckBox(self, text="Runtime", variable=self.checkboxVar, onvalue="choice11", offvalue="c11")                              
+        self.choice11 = ctk.CTkCheckBox(self, text="Runtime", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice11.grid(row=5, column=3, padx=20, pady=20, sticky="ew")
         
-        self.choice12 = ctk.CTkCheckBox(self, text="Link", variable=self.checkboxVar, onvalue="choice12", offvalue="c12")                              
+        self.choice12 = ctk.CTkCheckBox(self, text="Link", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice12.grid(row=5, column=4, padx=20, pady=20, sticky="ew")
          
         # Sort Label
