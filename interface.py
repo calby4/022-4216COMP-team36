@@ -52,20 +52,16 @@ class App(ctk.CTk):
     This function grabs the data from the searchEntry CTkEntry widget and returns it to the generateTableData function
     to edit the output of the table.
     """
-
     def searchFunction(self):
         
         searchEntryData = self.searchEntry.get()
-
         if searchEntryData == "":
-            
             self.generateTableData(self.dataFile)
-
         else:
             newDataFrame = self.dataFile.loc[self.dataFile['title'] == searchEntryData]
             self.generateTableData(newDataFrame)
+            self.searchEntry.delete(first_index=0 ,last_index=tk.END)
                 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
         # Title of the APP
@@ -92,27 +88,28 @@ class App(ctk.CTk):
         self.choiceLabel.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
  
         # Genre check boxes
+        self.checkbox1Var = ctk.IntVar(value=0)
         self.checkboxVar = ctk.IntVar(value=0)
          
-        self.choice1 = ctk.CTkCheckBox(self, text="Title", variable=self.checkboxVar, onvalue=1, offvalue=0)
+        self.choice1 = ctk.CTkCheckBox(self, text="Title", variable=self.checkbox1Var, onvalue=1, offvalue=0)
         self.choice1.grid(row=3, column=1, padx=20, pady=20, sticky="ew")
  
-        self.choice2 = ctk.CTkCheckBox(self, text="Year", variable=self.checkboxVar, onvalue="choice2", offvalue="c2")                              
+        self.choice2 = ctk.CTkCheckBox(self, text="Year", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice2.grid(row=3, column=2, padx=20, pady=20, sticky="ew")
         
-        self.choice3 = ctk.CTkCheckBox(self, text="Synopsis", variable=self.checkboxVar, onvalue="choice3", offvalue="c3")                              
+        self.choice3 = ctk.CTkCheckBox(self, text="Synopsis", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice3.grid(row=3, column=3, padx=20, pady=20, sticky="ew")
         
-        self.choice4 = ctk.CTkCheckBox(self, text="Critic Score", variable=self.checkboxVar, onvalue="choice4", offvalue="c4")                              
+        self.choice4 = ctk.CTkCheckBox(self, text="Critic Score", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice4.grid(row=3, column=4, padx=20, pady=20, sticky="ew")
         
-        self.choice5 = ctk.CTkCheckBox(self, text="People Score", variable=self.checkboxVar, onvalue="choice5", offvalue="c5")
+        self.choice5 = ctk.CTkCheckBox(self, text="People Score", variable=self.checkboxVar, onvalue=1, offvalue=0)
         self.choice5.grid(row=4, column=1, padx=20, pady=20, sticky="ew")
  
-        self.choice6 = ctk.CTkCheckBox(self, text="Rating", variable=self.checkboxVar, onvalue="choice6", offvalue="c6")                              
+        self.choice6 = ctk.CTkCheckBox(self, text="Rating", variable=self.checkboxVar, onvalue=1, offvalue=0)                              
         self.choice6.grid(row=4, column=2, padx=20, pady=20, sticky="ew")
         
-        self.choice7 = ctk.CTkCheckBox(self, text="Genre", variable=self.checkboxVar,onvalue="choice7", offvalue="c7")                              
+        self.choice7 = ctk.CTkCheckBox(self, text="Genre", variable=self.checkboxVar,onvalue=1, offvalue=0)                              
         self.choice7.grid(row=4, column=3, padx=20, pady=20, sticky="ew")
         
         self.choice8 = ctk.CTkCheckBox(self, text="Language", variable=self.checkboxVar, onvalue="choice8", offvalue="c8")                              
