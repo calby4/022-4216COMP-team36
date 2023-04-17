@@ -60,7 +60,7 @@ class App(ctk.CTk):
                                        variable=self.checkboxVar,
                                        onvalue=1,
                                        offvalue=0,
-                                       command=self.printhello)
+                                       )
         self.choice1.grid(row=3, column=1, padx=20,
                           pady=20, sticky="ew")
  
@@ -112,6 +112,34 @@ class App(ctk.CTk):
                                        offvalue="c8")                              
         self.choice8.grid(row=4, column=4, padx=20, pady=20,
                           sticky="ew")
+        
+        self.choice9 = ctk.CTkCheckBox(self, text="Director",
+                                       variable=self.checkboxVar,
+                                       onvalue="choice9",
+                                       offvalue="c9")                              
+        self.choice9.grid(row=4, column=4, padx=20, pady=20,
+                          sticky="ew")
+        
+        self.choice10 = ctk.CTkCheckBox(self, text="Producer",
+                                       variable=self.checkboxVar,
+                                       onvalue="choice10",
+                                       offvalue="c10")                              
+        self.choice10.grid(row=4, column=4, padx=20, pady=20,
+                          sticky="ew")
+        
+        self.choice11 = ctk.CTkCheckBox(self, text="Runtime",
+                                       variable=self.checkboxVar,
+                                       onvalue="choice11",
+                                       offvalue="c11")                              
+        self.choice11.grid(row=4, column=4, padx=20, pady=20,
+                          sticky="ew")
+        
+        self.choice12 = ctk.CTkCheckBox(self, text="Link",
+                                       variable=self.checkboxVar,
+                                       onvalue="choice12",
+                                       offvalue="c12")                              
+        self.choice12.grid(row=4, column=4, padx=20, pady=20,
+                          sticky="ew")
          
         # Sort Label
         self.sortLabel = ctk.CTkLabel(self,
@@ -127,7 +155,24 @@ class App(ctk.CTk):
         self.sortOptionMenu.grid(row=6, column=1,
                                        padx=20, pady=20,
                                        columnspan=2, sticky="ew")
- 
+        
+
+        dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
+        tree = ttk.Treeview(self,columns=dataList,show='headings')
+        tree.grid()
+
+        df = pd.read_csv("rotten_tomatoes_top_movies.csv")
+
+        for i in dataList:
+            tree.column(i,width=120,anchor='center')
+            tree.heading(i,text=str(i))
+        for i in range(1, len(df.iloc[1:])):
+            dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
+            newdataList = list(df.iloc[i].loc[dataList])
+            tree.insert(parent='',index='end', text='', values=newdataList)
+            newdataList.clear()          
+            
+
  
 if __name__ == "__main__":
     app = App()
