@@ -44,8 +44,14 @@ class App(ctk.CTk):
 
     def searchFunction(self):
         
-        titleToGet = self.searchEntry.get()
-        print(titleToGet)
+
+
+        searchEntryData = self.searchEntry.get()
+
+        if searchEntryData == "":
+            self.searchEntry._placeholder_text="Please Enter a Query Before Searching!"
+
+        print(searchEntryData)
         self.searchEntry.configure(textvariable="Enter search query")
 
     def __init__(self, *args, **kwargs):
@@ -65,7 +71,7 @@ class App(ctk.CTk):
         self.searchEntry.grid(row=0, column=1, columnspan=3, padx=20, pady=20, sticky="ew")
         
         self.searchButton = ctk.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), text="Search", command=self.searchFunction)
-        self.searchButton.grid(row = 0, column = 5)
+        self.searchButton.grid(row = 0, column = 4)
         
 
  
