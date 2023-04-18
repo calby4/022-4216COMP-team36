@@ -14,6 +14,7 @@ ctk.set_default_color_theme("green")
  
  # Dimensions of the app are set
 appWidth, appHeight = 1600, 700
+appWidth, appHeight = 1600, 700
 
 Data = pd.read_csv("rotten_tomatoes_top_movies.csv")
 
