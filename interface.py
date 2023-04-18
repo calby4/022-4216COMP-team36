@@ -56,7 +56,7 @@ class App(ctk.CTk):
         if searchEntryData == "":
             self.generateTableData(self.dataFile)
         else:
-            newDataFrame = self.dataFile.loc[self.dataFile['title'] == searchEntryData]
+            newDataFrame = self.dataFile.loc[self.dataFile['title'].str.contains(searchEntryData, case=False)]
             self.generateTableData(newDataFrame)
             self.searchEntry.delete(first_index=0 ,last_index=tk.END)
                 
@@ -136,7 +136,7 @@ class App(ctk.CTk):
         #Creates the grid used to display the data.
         self.dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
         self.tree = ttk.Treeview(self,columns=self.dataList,show='headings')
-        self.tree.grid(row=7, column = 1, columnspan=5)     
+        self.tree.grid(row=7, column = 1, columnspan=5, rowspan = 3)     
         self.generateTableData(self.dataFile)
 
 
