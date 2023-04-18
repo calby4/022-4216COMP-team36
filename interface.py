@@ -139,7 +139,7 @@ class App(ctk.CTk):
         self.tree.grid(row=7, column = 1, columnspan=5)     
         self.generateTableData(self.dataFile)
 
- 
+
 if __name__ == "__main__":
     app = App()
     app.mainloop()
