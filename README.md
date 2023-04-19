@@ -12,5 +12,5 @@ Suley Sajid Bashir,
 --------------
 
 HOW TO RUN PROGRAM
---------------------------
-Run 'interface.py' as the main file for now.
+-------------------
+run interface.py with all required libraries (CTk, Tk, pandas)
