@@ -98,7 +98,7 @@ class App(ctk.CTk):
         if searchEntryData == "":
             self.generateTableData(self.dataFile, columns)
         else:
-            newDataFrame = self.dataFile.loc[self.dataFile['title'].str.contains(searchEntryData, case=False)]
+            newDataFrame = self.dataFile.loc[(self.dataFile['title'].str.contains(searchEntryData)) | (self.dataFile['title'].str == searchEntryData)]
             self.generateTableData(newDataFrame, columns)
             self.searchEntry.delete(first_index=0 ,last_index=tk.END)
 
@@ -218,12 +218,12 @@ class App(ctk.CTk):
         self.choice12.grid(row=5, column=4, padx=20, pady=20, sticky="ew")
          
         # Sort Label
-        self.sortLabel = ctk.CTkLabel(self, text="Sort Order")
-        self.sortLabel.grid(row=6, column=0, padx=20, pady=20, sticky="ew")
+        #self.sortLabel = ctk.CTkLabel(self, text="Sort Order")
+       # self.sortLabel.grid(row=6, column=0, padx=20, pady=20, sticky="ew")
  
         # Sort Option Menu
-        self.sortOptionMenu = ctk.CTkOptionMenu(self, values=["Ascending", "Descending"])
-        self.sortOptionMenu.grid(row=6, column=1, padx=20, pady=20,  sticky="ew")
+        #self.sortOptionMenu = ctk.CTkOptionMenu(self, values=["Ascending", "Descending"])
+        #self.sortOptionMenu.grid(row=6, column=1, padx=20, pady=20,  sticky="ew")
         
         #Creates the grid used to display the data.
         columns = self.generateTable()
