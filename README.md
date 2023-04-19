@@ -14,4 +14,3 @@ Suley Sajid Bashir,
 HOW TO RUN PROGRAM
 -------------------
 run interface.py with all required libraries (CTk, Tk, pandas)
-
