@@ -1,23 +1,17 @@
 # Interface for data sorting program
 
 # Import required libraries
- 
 import customtkinter as ctk
 import tkinter as tk
 import pandas as pd
 from tkinter import ttk
  
- # Setting the theme of the UI
+# Setting the theme of the UI
 ctk.set_appearance_mode("dark")
- 
 ctk.set_default_color_theme("green")   
  
- # Dimensions of the app are set
+# Dimensions of the app are set
 appWidth, appHeight = 1600, 700
-
-Data = pd.read_csv("rotten_tomatoes_top_movies.csv")
-
-dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
 
 # App Class
 class App(ctk.CTk):
@@ -25,6 +19,7 @@ class App(ctk.CTk):
     """
     function getColumnsForTable
     params self
+    return  newColumnList   List
 
     This function generates the columns for the tree Table. It works by first checking if all values are set to 0,
     if so, return the default columnList (dataList) otherwise, go through the list and add the correct columns
@@ -39,6 +34,7 @@ class App(ctk.CTk):
             total += self.checkboxData[i].get()
 
         if total == -1:
+            #no checkboxes have been selected so return all the fields.
             return self.dataList
         else:
             newColumnList = []
@@ -53,7 +49,9 @@ class App(ctk.CTk):
     params  self
 
     This function generates the data that is displayed in self.tree, or rather displays the movies and their
-    corresponding attributes.
+    corresponding attributes. It first deletes any children in the tree to get a clean slate. Then for each column
+    we get the text from the columns param and set the width of each column to 120px. We then use another for loop
+    to loop through the parsed DataFrame and grab the necessary data.
     """
     def generateTableData(self, dataFile, columns):
 
@@ -72,8 +70,9 @@ class App(ctk.CTk):
     """
     function generateTable
     params self
-
-    Generates a treeview named self.tree. 
+    returns columns List
+    
+    Generates a treeview named self.tree and returns a columns List to use in the generateTableData
     """
 
     def generateTable(self):
@@ -82,7 +81,6 @@ class App(ctk.CTk):
         self.tree = ttk.Treeview(self,columns=columns,show='headings')
         self.tree.grid(row=7, column = 1, columnspan=5, rowspan = 3)
         return columns
-
 
     """
     function searchFunction
@@ -95,16 +93,26 @@ class App(ctk.CTk):
         
         searchEntryData = self.searchEntry.get()
         columns = self.getColumnsForTable()
+        #return an empty search with the entire file. (bad practice but its fine for this program)
         if searchEntryData == "":
             self.generateTableData(self.dataFile, columns)
         else:
-            newDataFrame = self.dataFile.loc[(self.dataFile['title'].str.contains(searchEntryData)) | (self.dataFile['title'].str == searchEntryData)]
+            #check in the title column and return any location where the row contains the search entry.
+            newDataFrame = self.dataFile.loc[self.dataFile['title'].str.contains(searchEntryData)]
             self.generateTableData(newDataFrame, columns)
             self.searchEntry.delete(first_index=0 ,last_index=tk.END)
 
+    """
+    function fillCheckboxData
+    params  self
+
+    This function fills the list 'self.checkboxData' with 12 tk.IntVar elements with a value of 0.
+    This means that all filters are set to be unchecked by default.
+    """
     def fillCheckboxData(self):
         for i in range(0, 12):
             self.checkboxData.append(tk.IntVar(value=0))
+
     """
     function refreshFunction
     params self
@@ -113,7 +121,7 @@ class App(ctk.CTk):
     """
     def refreshFunction(self):
         
-        #Clear all filters
+        #deselect all checkboxes. This can probably be made more efficient but idk how to do it.
         self.choice1.deselect()
         self.choice2.deselect()
         self.choice3.deselect()
@@ -132,6 +140,13 @@ class App(ctk.CTk):
         columns = self.generateTable()
         self.generateTableData(self.dataFile, columns)
 
+    """
+    function updateFunction
+    params  self
+
+    This function updates the table by destroying the tree and regenerating the tree with the original values.
+    """
+
     def updateFunction(self):
         
         #destroy tree and regenerate as new.
@@ -144,18 +159,19 @@ class App(ctk.CTk):
     function init
     params self, *args, **kwargs
 
-    This function initialises our tk application. 
+    This function initialises our tk application and sets all necessary variables to their values.
     """
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
         # Title of the APP
         self.title("Rotten Tomatoes Top Movies Data Searcher")
         self.geometry(f"{appWidth}x{appHeight}")
+
+        #generic column headers, used to compare against checkboxData list to get filtered headers.
         self.dataList = ['title','year','synopsis','critic_score','people_score','rating','genre','original_language','director','producer','runtime','link']
         self.checkboxData = []
 
-        #Initialises an empty filter list and creates a pandas DataFrame object from our CSV
+        #Creates the generic dataframe for our program.
         self.dataFile = pd.read_csv("rotten_tomatoes_top_movies.csv")
 
         # Search Label
@@ -166,6 +182,7 @@ class App(ctk.CTk):
         self.searchEntry = ctk.CTkEntry(self, placeholder_text="Enter search query")
         self.searchEntry.grid(row=0, column=1, columnspan=3, padx=20, pady=20, sticky="ew")
         
+        #Search button
         self.searchButton = ctk.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), text="Search", command=self.searchFunction)
         self.searchButton.grid(row = 0, column = 4)
 
@@ -176,11 +193,11 @@ class App(ctk.CTk):
         # Filter choice label
         self.choiceLabel = ctk.CTkLabel(self, text="Select Filters")
         self.choiceLabel.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
- 
+
+        #Fill the checkboxData list with starting values.
         self.fillCheckboxData()
 
-        # Filter check boxes
-         
+        # Filter check boxes, all variables are contained within checkboxData, all commands call the updateFunction
         self.choice1 = ctk.CTkCheckBox(self, text="Title", variable=self.checkboxData[0], onvalue=1, offvalue=0, command=self.updateFunction)
         self.choice1.grid(row=3, column=1, padx=20, pady=20, sticky="ew")
  
@@ -216,20 +233,12 @@ class App(ctk.CTk):
         
         self.choice12 = ctk.CTkCheckBox(self, text="Link", variable=self.checkboxData[11], onvalue=1, offvalue=0, command=self.updateFunction)                               
         self.choice12.grid(row=5, column=4, padx=20, pady=20, sticky="ew")
-         
-        # Sort Label
-        #self.sortLabel = ctk.CTkLabel(self, text="Sort Order")
-       # self.sortLabel.grid(row=6, column=0, padx=20, pady=20, sticky="ew")
- 
-        # Sort Option Menu
-        #self.sortOptionMenu = ctk.CTkOptionMenu(self, values=["Ascending", "Descending"])
-        #self.sortOptionMenu.grid(row=6, column=1, padx=20, pady=20,  sticky="ew")
         
-        #Creates the grid used to display the data.
+        #Generate the table headers and the table itself.
         columns = self.generateTable()
         self.generateTableData(self.dataFile, columns)
 
-
+#begin mainloop of our program
 if __name__ == "__main__":
     app = App()
     app.mainloop()
