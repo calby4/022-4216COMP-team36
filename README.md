@@ -12,3 +12,7 @@ Mitchell Thomas
 HOW TO RUN PROGRAM
 -------------------
 run interface.py with all required libraries (CTk, Tk, pandas)
+
+HOW TO RUN VISUAL
+-------------------
+run data-vis.py with required libraries (same as interface.py but with matplotlib)
