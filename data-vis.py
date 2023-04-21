@@ -30,8 +30,27 @@ class App(ctk.CTk):
         df = plt.bar(newDataFrame['title'].head(10), newDataFrame['critic_score'].head(10))
         plt.xlabel("Title")
         plt.ylabel("Critic Score")
-        plt.title("Top Ten Worst Films by Critics")
+        plt.title("Top Ten Best Films by Critics")
         plt.show()
+
+    def peopleScoreChart1(self):
+
+        newDataFrame = self.dataFrame.sort_values(by=['people_score'], ascending=True)
+        df = plt.bar(newDataFrame['title'].head(10), newDataFrame['people_score'].head(10))
+        plt.xlabel("Title")
+        plt.ylabel("People Score")
+        plt.title("Top Ten Worst Films by People")
+        plt.show()    
+
+    def peopleScoreChart2(self):
+
+        newDataFrame = self.dataFrame.sort_values(by=['people_score'], ascending=False)
+        df = plt.bar(newDataFrame['title'].head(10), newDataFrame['people_score'].head(10))
+        plt.xlabel("Title")
+        plt.ylabel("People Score")
+        plt.title("Top Ten Best Films by People")
+        plt.show()        
+
 
 
     def __init__(self):
@@ -58,13 +77,13 @@ class App(ctk.CTk):
         self.peopleScoreLabel = ctk.CTkLabel(self, text="Top Ten Worst Movies by People Score")
         self.peopleScoreLabel.grid(row=3, column=0, pady=20, padx=20)
 
-        self.peopleScoreButton = ctk.CTkButton(self, text="Produce Bar Chart")
+        self.peopleScoreButton = ctk.CTkButton(self, text="Produce Bar Chart", command=self.peopleScoreChart1)
         self.peopleScoreButton.grid(row=3, column=1, pady=20, padx=20)
 
         self.peopleScoreLabel2 = ctk.CTkLabel(self, text="Top Ten Best Films by People Score")
         self.peopleScoreLabel2.grid(row=4, column=0, pady=20, padx=20)
 
-        self.peopleScoreButton2 = ctk.CTkButton(self, text="Produce Bar Chart")
+        self.peopleScoreButton2 = ctk.CTkButton(self, text="Produce Bar Chart", command=self.peopleScoreChart2)
         self.peopleScoreButton2.grid(row=4, column=1, pady=20, padx=20)
 
 if __name__ == '__main__':
