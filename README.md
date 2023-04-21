@@ -6,9 +6,7 @@ Lewis Ashall,
 Callum Bamford,
 Connor Allen,
 Lenny Byrne,
-Mitchell Thomas,
-Elliott Lawton,
-Suley Sajid Bashir,
+Mitchell Thomas
 --------------
 
 HOW TO RUN PROGRAM
