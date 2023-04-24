@@ -1,14 +1,9 @@
-# 022-4216COMP-team36
+Requires the following to run visualisation.py: Pandas, Matplotlib.
 
-Team Members :
---------------
-Lewis Ashall,
-Callum Bamford,
-Connor Allen,
-Lenny Byrne,
-Mitchell Thomas.
---------------
+Use these to install:
 
-HOW TO RUN PROGRAM
--------------------
-run interface.py with all required libraries (CTk, Tk, pandas)
+Matplotlib: https://matplotlib.org/stable/users/installing/index.html
+
+Pandas: https://pandas.pydata.org/docs/getting_started/install.html
+
+Run the visualisation.py file and you will get a graph in a seperate window.
