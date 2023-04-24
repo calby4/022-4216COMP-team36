@@ -1,19 +1,19 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Read CSV file
-data = pd.read_csv('filename.csv')
+# Reads the CSV file
+data = pd.read_csv('rotten_tomatoes_top_movies.csv')
 
 # Create figure and axis objects
 fig, ax = plt.subplots()
 
 # Plot data on axis object
-ax.plot(data['Column1'], data['Column2'], label='Data Label')
+ax.plot(data['total_reviews'], data['year'], )
 
 # Add labels, title, and legend
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
-ax.set_title('Graph Title')
+ax.set_xlabel('Total Reviews')
+ax.set_ylabel('Year')
+ax.set_title('Total reviews by Year')
 ax.legend()
 
 # Display graph
