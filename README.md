@@ -14,3 +14,7 @@ Suley Sajid Bashir,
 HOW TO RUN PROGRAM
 -------------------
 run interface.py with all required libraries (CTk, Tk, pandas)
+-------------------
+How TO RUN VISUALISATION
+-------------------
+RUN visualisation.py with libraries CTk,Tk and Matplotlib
